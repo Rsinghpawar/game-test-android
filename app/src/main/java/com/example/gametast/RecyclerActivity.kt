@@ -1,19 +1,13 @@
 package com.example.gametast
 
-import android.content.DialogInterface
-import android.content.Intent
-import android.graphics.Color
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.GridLayout
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_recycler.*
 import kotlinx.android.synthetic.main.layout_for_recycler.view.*
-import kotlin.random.Random
 
 class RecyclerActivity : AppCompatActivity() {
 
@@ -31,7 +25,16 @@ class RecyclerActivity : AppCompatActivity() {
         var start = list.size - 1
         btn_play.setOnClickListener {
             val random = (1..6).random()
-            txt_dice.text = random.toString()
+            val drawAble  =  when(random)
+            {
+                1-> R.drawable.dice_1
+                2-> R.drawable.dice_2
+                3-> R.drawable.dice_3
+                4-> R.drawable.dice_4
+                5-> R.drawable.dice_5
+                else->R.drawable.dice_6
+            }
+            img_dice.setImageResource(drawAble)
             activity_recycler!!.layoutManager!!.findViewByPosition(start)!!.txt_postion.setBackgroundColor(
                 ContextCompat.getColor(this, R.color.colorPrimaryDark)
             )
